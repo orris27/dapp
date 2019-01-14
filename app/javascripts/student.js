@@ -53,8 +53,8 @@ module.exports = {
     })
   },
   //获取已经购买的物品
-  getGoodsByStudent: function (currentAccount, DinningInstance, account) {
-    DinningInstance.getGoodsByStudent.call(currentAccount, { from: account }).then(function (result) {
+  getFoodsByStudent: function (currentAccount, DinningInstance, account) {
+    DinningInstance.getFoodsByStudent.call(currentAccount, { from: account }).then(function (result) {
       if (result.length === 0) {
         window.App.setStatus('空...')
       } else {
@@ -67,11 +67,11 @@ module.exports = {
     })
   },
   // 客户实现任意的积分转让
-  transferDinningToAnotherFromStudent: function (currentAccount, DinningInstance, account) {
+  transferMoney: function (currentAccount, DinningInstance, account) {
     const receivedAddr = document.getElementById('anotherAddress').value
     const amount = parseInt(document.getElementById('scoreAmount').value)
-    DinningInstance.transferDinningToAnother(0, currentAccount, receivedAddr, amount, { from: account })
-    DinningInstance.TransferDinningToAnother(function (e, r) {
+    DinningInstance.transferMoney(0, currentAccount, receivedAddr, amount, { from: account })
+    DinningInstance.TransferMoney(function (e, r) {
       if (!e) {
         console.log(r.args)
         window.App.setStatus(r.args.message)
@@ -79,10 +79,10 @@ module.exports = {
     })
   },
   // 购买物品
-  buyGood: function (currentAccount, DinningInstance, account) {
+  buyFood: function (currentAccount, DinningInstance, account) {
     const goodId = document.getElementById('goodId').value
-    DinningInstance.buyGood(currentAccount, goodId, { from: account, gas: 1000000 }).then(function () {
-      DinningInstance.BuyGood(function (error, event) {
+    DinningInstance.buyFood(currentAccount, goodId, { from: account, gas: 1000000 }).then(function () {
+      DinningInstance.BuyFood(function (error, event) {
         if (!error) {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)

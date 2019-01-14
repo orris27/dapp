@@ -187,16 +187,16 @@ contract Dinning is Utils {
 
     //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法
     //_senderType表示调用者类型，0表示客户，1表示商户
-    event TransferMoneyToAnother(address sender, string message);
+    event TransferMoney(address sender, string message);
 
-    function transferMoneyToAnother(uint _senderType,
+    function transferMoney(uint _senderType,
         address _sender,
         address _receiver,
         uint _amount) public {
 
         if (!isStudentRegistered(_receiver)) {
             //目的账户不存在
-            emit TransferMoneyToAnother(msg.sender, "目的账户不存在，请确认后再转移！");
+            emit TransferMoney(msg.sender, "目的账户不存在，请确认后再转移！");
             return;
         }
         if (_senderType == 0) {
@@ -210,10 +210,10 @@ contract Dinning is Utils {
                 } else {
                     student[_receiver].balance += _amount;
                 }
-                emit TransferMoneyToAnother(msg.sender, "金额转让成功！");
+                emit TransferMoney(msg.sender, "金额转让成功！");
                 return;
             } else {
-                emit TransferMoneyToAnother(msg.sender, "你的余额不足，转让失败！");
+                emit TransferMoney(msg.sender, "你的余额不足，转让失败！");
                 return;
             }
         }
@@ -256,7 +256,7 @@ contract Dinning is Utils {
     //用户用积分购买一件商品
     event BuyFood(address sender, bool isSuccess, string message);
 
-    function boughtFoods(address _studentAddr, string _foodId) public {
+    function buyFood(address _studentAddr, string _foodId) public {
         //首先判断输入的商品Id是否存在
         bytes32 tempId = stringToBytes32(_foodId);
         if (isFoodAdded(tempId)) {

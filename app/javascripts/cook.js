@@ -2,11 +2,11 @@ const utils = require('./utils')
 module.exports = {
 
   // 注册商家
-  newCook: function (ScoreInstance, account) {
+  newCook: function (DinningInstance, account) {
     const address = document.getElementById('cookAddress').value
     const password = document.getElementById('cookPassword').value
-    ScoreInstance.newCook(address, password, { from: account, gas: 1000000 }).then(function () {
-      ScoreInstance.NewCook(function (error, event) {
+    DinningInstance.newCook(address, password, { from: account, gas: 1000000 }).then(function () {
+      DinningInstance.NewCook(function (error, event) {
         if (!error) {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)
@@ -15,10 +15,10 @@ module.exports = {
     })
   },
   // 商家登录
-  cookLogin: function (ScoreInstance, account) {
+  cookLogin: function (DinningInstance, account) {
     const address = document.getElementById('cookLoginAddr').value
     const password = document.getElementById('cookLoginPwd').value
-    ScoreInstance.getCookPassword(address, { from: account }).then(function (result) {
+    DinningInstance.getCookPassword(address, { from: account }).then(function (result) {
       console.log(password)
       console.log(utils.hexCharCodeToStr(result[1]))
       if (result[0]) {
@@ -39,9 +39,9 @@ module.exports = {
     })
   },
   // 根据商户address获取积分余额
-  getScoreWithCookAddr: function (currentAccount, ScoreInstance, account) {
+  getScoreWithCookAddr: function (currentAccount, DinningInstance, account) {
     console.log(currentAccount)
-    ScoreInstance.getScoreWithCookAddr.call(currentAccount, { from: account }).then(function (value) {
+    DinningInstance.getScoreWithCookAddr.call(currentAccount, { from: account }).then(function (value) {
       window.App.setStatus('当前余额：' + value.valueOf())
     }).catch(function (e) {
       console.log(e)
@@ -52,11 +52,11 @@ module.exports = {
     window.App.setStatus(currentAccount)
   },
   // 商户实现任意的积分转让
-  transferScoreToAnotherFromCook: function (currentAccount, ScoreInstance, account) {
+  transferScoreToAnotherFromCook: function (currentAccount, DinningInstance, account) {
     const receivedAddr = document.getElementById('anotherAccountAddr').value
     const amount = parseInt(document.getElementById('scoreAmount').value)
-    ScoreInstance.transferScoreToAnother(1, currentAccount, receivedAddr, amount, { from: account })
-    ScoreInstance.TransferScoreToAnother(function (error, event) {
+    DinningInstance.transferScoreToAnother(1, currentAccount, receivedAddr, amount, { from: account })
+    DinningInstance.TransferScoreToAnother(function (error, event) {
       if (!error) {
         console.log(event.args.message)
         window.App.setStatus(event.args.message)
@@ -64,11 +64,11 @@ module.exports = {
     })
   },
   // 商户增加一件商品：默认gas会OOG
-  addGood: function (currentAccount, ScoreInstance, account) {
+  addFood: function (currentAccount, DinningInstance, account) {
     const goodId = document.getElementById('goodId').value
     const goodPrice = parseInt(document.getElementById('goodPrice').value)
-    ScoreInstance.addGood(currentAccount, goodId, goodPrice, { from: account, gas: 2000000 }).then(function () {
-      ScoreInstance.AddGood(function (error, event) {
+    DinningInstance.addFood(currentAccount, goodId, goodPrice, { from: account, gas: 2000000 }).then(function () {
+      DinningInstance.AddFood(function (error, event) {
         if (!error) {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)
@@ -77,26 +77,26 @@ module.exports = {
     })
   },
   // 商户查看已添加的所有商品
-  getGoodsByCook: function (currentAccount, ScoreInstance, account) {
-    ScoreInstance.getGoodsByCook.call(currentAccount, { from: account }).then(function (result) {
+  getFoodsByCook: function (currentAccount, DinningInstance, account) {
+    DinningInstance.getFoodsByCook.call(currentAccount, { from: account }).then(function (result) {
       console.log(result.length)
       console.log(result)
       if (result.length === 0) {
         window.App.setStatus('空...')
       }
-      let allGoods = ''
+      let allFoods = ''
       result.forEach(e => {
-        allGoods += utils.hexCharCodeToStr(e) + ', '
+        allFoods += utils.hexCharCodeToStr(e) + ', '
       })
-      allGoods = allGoods.substr(0, allGoods.length - 2)
-      window.App.setStatus(allGoods)
+      allFoods = allFoods.substr(0, allFoods.length - 2)
+      window.App.setStatus(allFoods)
     })
   },
   // 商户和银行进行积分清算
-  settleScoreWithBank: function (currentAccount, ScoreInstance, account) {
+  settleScoreWithBank: function (currentAccount, DinningInstance, account) {
     const settleAmount = parseInt(document.getElementById('settleAmount').value)
-    ScoreInstance.settleScoreWithBank(currentAccount, settleAmount, { from: account }).then(function () {
-      ScoreInstance.SettleScoreWithBank(function (error, event) {
+    DinningInstance.settleScoreWithBank(currentAccount, settleAmount, { from: account }).then(function () {
+      DinningInstance.SettleScoreWithBank(function (error, event) {
         if (!error) {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)
@@ -108,4 +108,3 @@ module.exports = {
     })
   }
 }
-

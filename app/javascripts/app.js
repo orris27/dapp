@@ -71,8 +71,8 @@ window.App = {
     student.getFoodsByStudent(currentAccount, DinningInstance, account)
   },
   // 客户转让积分
-  transferMoneyToAnotherFromStudent: function (currentAccount) {
-    student.transferMoneyToAnotherFromStudent(currentAccount, DinningInstance, account)
+  transferMoney: function (currentAccount) {
+    student.transferMoney(currentAccount, DinningInstance, account)
   },
   // 商家注册
   newCook: function () {
@@ -123,6 +123,11 @@ window.App = {
   setConsole: function (message) {
     const status = document.getElementById('console')
     status.innerHTML = message
+  },
+
+
+  logout: function (currentAccount) {
+    window.location.href = "index.html"
   }
 
 
