@@ -6,7 +6,8 @@ module.exports = {
     DinningInstance.getOwner({ from: account }).then(function (result) {
       if (address.localeCompare(result) === 0) {
         // 跳转到管理员页面
-        window.location.href = 'admin.html?account=' + address
+        sessionStorage.setItem("account", address)
+        window.location.href = 'admin.html'
       } else {
         window.alert('不是银行账户，登录失败')
       }
@@ -15,10 +16,11 @@ module.exports = {
 
   // 银行向顾客发送积分
   sendMoneyToStudent: function (DinningInstance, account) {
-    const address = document.getElementById('customerAddress').value
-    const score = document.getElementById('scoreAmount').value
-    DinningInstance.sendMoneyToStudent(address, score, { from: account })
-    DinningInstance.sendMoneyToStudent(function (e, r) {
+    const address = document.getElementById('studentAddress').value
+    const amount = parseInt(document.getElementById('amount').value)
+    console.log(amount)
+    DinningInstance.sendMoneyToStudent(address, amount, { from: account })
+    DinningInstance.SendMoneyToStudent(function (e, r) {
       if (!e) {
         console.log(r.args.message)
         window.App.setStatus(r.args.message)

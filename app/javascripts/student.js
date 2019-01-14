@@ -31,8 +31,8 @@ module.exports = {
         if (password.localeCompare(utils.hexCharCodeToStr(result[1])) === 0) {
           console.log('登录成功')
           // 跳转到用户界面
-          window.location.href = 'student.html?account=' + address
-          localStorage.setItem("account", address)
+          sessionStorage.setItem("account", address)
+          window.location.href = 'student.html'
         } else {
           console.log('密码错误，登录失败')
           window.App.setStatus('密码错误，登录失败')

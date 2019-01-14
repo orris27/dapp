@@ -5,16 +5,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <script src="./app.js"></script>
     <script>
-      const getvalArr = document.URL.split('?')[1]
-      const keyValueArr = getvalArr.split('&')
-      console.log('当前商户：' + keyValueArr[0].split('=')[1])
-      const currentAccount = keyValueArr[0].split('=')[1]
+      const currentAccount = sessionStorage.getItem("account")
     </script>
 </head>
 <body>
 <div>
-
-
     <h1>电子积分案例</h1>
     <div id="info">
         <p id="status">Status</p>

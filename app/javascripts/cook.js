@@ -19,14 +19,15 @@ module.exports = {
     const address = document.getElementById('cookLoginAddr').value
     const password = document.getElementById('cookLoginPwd').value
     DinningInstance.getCookPassword(address, { from: account }).then(function (result) {
-      console.log(password)
-      console.log(utils.hexCharCodeToStr(result[1]))
+      // console.log(password)
+      // console.log(utils.hexCharCodeToStr(result[1]))
       if (result[0]) {
         // 查询密码成功
         if (password.localeCompare(utils.hexCharCodeToStr(result[1])) === 0) {
           console.log('登录成功')
           // 跳转到商户界面
-          window.location.href = 'cook.html?account=' + address
+          sessionStorage.setItem("account", address)
+          window.location.href = 'cook.html'
         } else {
           console.log('密码错误,登录失败')
           window.App.setStatus('密码错误，登录失败')

@@ -162,9 +162,7 @@ contract Dinning is Utils {
     //银行发送积分给客户,只能被银行调用，且只能发送给客户
     event SendMoneyToStudent(address sender, string message);
 
-    function sendMoneyToStudent(address _receiver,
-        uint _amount) onlyOwner public {
-
+    function sendMoneyToStudent(address _receiver, uint _amount) onlyOwner public {
         if (isStudentRegistered(_receiver)) {
             //已经注册
             issuedAmount += _amount;
