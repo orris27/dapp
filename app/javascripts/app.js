@@ -2,7 +2,7 @@
 import '../stylesheets/app.css'
 
 const student = require('./student')
-const bank = require('./bank')
+const admin = require('./admin')
 const cook = require('./cook')
 // Import libraries we need.
 import { default as Web3 } from 'web3'
@@ -96,15 +96,15 @@ window.App = {
   },
   // 发行积分
   sendMoneyToStudent: function () {
-    bank.sendMoneyToStudent(DinningInstance, account)
+    admin.sendMoneyToStudent(DinningInstance, account)
   },
   // 银行登录
-  bankLogin: function () {
-    bank.bankLogin(DinningInstance, account)
+  adminLogin: function () {
+    admin.adminLogin(DinningInstance, account)
   },
   // 查看已经发行的积分
   getIssuedAmount: function () {
-    bank.getIssuedAmount(DinningInstance, account)
+    admin.getIssuedAmount(DinningInstance, account)
   },
   // 查询所有的区块链账户
   allAccounts: function () {

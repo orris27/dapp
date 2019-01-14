@@ -16,7 +16,7 @@ module.exports = {
       { from: './app/student.html', to: 'student.html' }
     ]),
     new CopyWebpackPlugin([
-      { from: './app/bank.html', to: 'bank.html' }
+      { from: './app/admin.html', to: 'admin.html' }
     ]),
     new CopyWebpackPlugin([
       { from: './app/cook.html', to: 'cook.html' }
