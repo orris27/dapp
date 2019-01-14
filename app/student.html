@@ -9,7 +9,9 @@
       let getvalArr = document.URL.split('?')[1]
       let keyValueArr = getvalArr.split('&')
       console.log('当前用户：' + keyValueArr[0].split('=')[1])
-      const currentAccount = keyValueArr[0].split('=')[1]
+      // const currentAccount = keyValueArr[0].split('=')[1]
+      const currentAccount = localStorage.getItem("account")
+      
     </script>
 
 </head>

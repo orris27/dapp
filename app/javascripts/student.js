@@ -32,6 +32,7 @@ module.exports = {
           console.log('登录成功')
           // 跳转到用户界面
           window.location.href = 'student.html?account=' + address
+          localStorage.setItem("account", address)
         } else {
           console.log('密码错误，登录失败')
           window.App.setStatus('密码错误，登录失败')
