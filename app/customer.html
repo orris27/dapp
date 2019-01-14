@@ -3,6 +3,7 @@
 <head>
     <title>用户</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="./app.js"></script>
     <script>
       let getvalArr = document.URL.split('?')[1]
@@ -10,12 +11,13 @@
       console.log('当前用户：' + keyValueArr[0].split('=')[1])
       const currentAccount = keyValueArr[0].split('=')[1]
     </script>
+
 </head>
 <body>
 <div>
 
 
-    <h1>电子积分案例</h1>
+    <h1>线上食堂订餐案例</h1>
     <div id="info">
         <p id="status">Status</p>
     </div>
@@ -39,6 +41,7 @@
         <br>
         <button onclick="App.transferScoreToAnotherFromCustomer(currentAccount)">转让积分</button>
     </div>
+
     <div class="block">
         <h3>购买商品</h3>
         <label for="goodId">购买商品Id</label><input type="text" id="goodId">
@@ -58,6 +61,10 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 
 </html>
