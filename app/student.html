@@ -20,30 +20,30 @@
     </div>
     <br/>
     <br/>
-    <h2>客户端</h2>
+    <h2>学生端</h2>
     <div class="block">
         <h3>查询信息</h3>
         <br>
-        <button onclick="App.getCurrentStudent(currentAccount)">当前客户</button>
+        <button onclick="App.getCurrentStudent(currentAccount)">当前学生</button>
         <br>
         <button onclick="App.getStudentBalance(currentAccount)">当前余额</button>
         <br>
-        <button onclick="App.getGoodsByStudent(currentAccount)">查看已购买商品</button>
+        <button onclick="App.getFoodsByStudent(currentAccount)">查看已购买食物</button>
     </div>
     <div class="block">
-        <h3>转让积分</h3>
-        <label for="anotherAddress">转让地址</label><input type="text" id="anotherAddress"
+        <h3>转让金钱</h3>
+        <label for="anotherAddress">转让金钱</label><input type="text" id="anotherAddress"
                                                        placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
-        <br><label for="scoreAmount">积分数量</label><input type="text" id="scoreAmount" placeholder="e.g., ******">
+        <br><label for="amount">金钱数量</label><input type="text" id="amount" placeholder="e.g., ******">
         <br>
-        <button onclick="App.transferMoney(currentAccount)">转让积分</button>
+        <button onclick="App.transferMoney(currentAccount)">转让金额</button>
     </div>
 
     <div class="block">
-        <h3>购买商品</h3>
-        <label for="goodId">购买商品Id</label><input type="text" id="goodId">
+        <h3>购买食物</h3>
+        <label for="goodId">购买食物Id</label><input type="text" id="goodId">
         <br>
-        <button id="buyGood" onclick="App.buyGood(currentAccount)">购买商品</button>
+        <button id="buyFood" onclick="App.buyFood(currentAccount)">购买食物</button>
     </div>
 
     <div class="block">

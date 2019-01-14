@@ -10,34 +10,26 @@
 </head>
 <body>
 <div>
-    <h1>电子积分案例</h1>
+    <h1>线上食堂订餐案例</h1>
     <div id="info">
         <p id="status">Status</p>
     </div>
     <br/>
     <br/>
-    <h2>商家端</h2>
+    <h2>厨师端</h2>
     <div class="block">
         <h3>查询信息</h3>
-        <button id="getCurrentCook" onclick="App.getCurrentCook(currentAccount)">当前商户</button>
+        <button id="getCurrentCook" onclick="App.getCurrentCook(currentAccount)">当前账户</button>
     </div>
 
     <div class="block">
-        <h3>添加商品</h3>
-        <br><br><br><label for="goodId">商品ID</label><input type="text" id="goodId">
-        <br><label for="goodPrice">商品价格</label><input type="text" id="goodPrice">
+        <h3>制作食物</h3>
+        <br><br><br><label for="goodId">食物ID</label><input type="text" id="goodId">
+        <br><label for="goodPrice">食物价格</label><input type="text" id="goodPrice">
         <br>
-        <button onclick="App.addFood(currentAccount)">添加商品</button>
-        <button onclick="App.getFoodsByCook(currentAccount)">查看已添加商品</button>
+        <button onclick="App.addFood(currentAccount)">添加食物</button>
+        <button onclick="App.getFoodsByCook(currentAccount)">查看已添加食物</button>
     </div>
-
-    <div class="block">
-        <h3>积分清算</h3>
-        <label for="settleAmount">清算积分数额</label><input type="text" id="settleAmount">
-        <br>
-        <button onclick="App.settleScoreWithBank(currentAccount)">清算积分</button>
-    </div>
-
     <div class="block">
         <h3>注销</h3>
         <button id="logout" onclick="App.logout(currentAccount)">注销</button>

@@ -70,7 +70,7 @@ module.exports = {
   // 客户实现任意的积分转让
   transferMoney: function (currentAccount, DinningInstance, account) {
     const receivedAddr = document.getElementById('anotherAddress').value
-    const amount = parseInt(document.getElementById('scoreAmount').value)
+    const amount = parseInt(document.getElementById('amount').value)
     DinningInstance.transferMoney(0, currentAccount, receivedAddr, amount, { from: account })
     DinningInstance.TransferMoney(function (e, r) {
       if (!e) {

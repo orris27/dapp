@@ -218,7 +218,7 @@ contract Dinning is Utils {
     }
 
     //银行查找已经发行的积分总数
-    function getissuedAmount() constant public returns (uint) {
+    function getIssuedAmount() constant public returns (uint) {
         return issuedAmount;
     }
 

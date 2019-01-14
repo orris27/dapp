@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>银行管理员</title>
+    <title>食堂管理员</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link href="./stylesheets/app.css" rel="stylesheet" type="text/css">
 
@@ -18,28 +18,26 @@
 <div>
 
 
-    <h1>电子积分案例</h1>
+    <h1>线上食堂订餐案例</h1>
     <div id="info">
         <p id="status">Status</p>
     </div>p
     <br/>
     <br/>
-    <h2>银行端</h2>
+    <h2>管理员端</h2>
 
 
     <div class="block">
-        <h3>发行积分</h3>
-        <label for="studentAddress">学生地址</label><input type="text" id="studentAddress"
+        <h3>发行金额</h3>
+        <label for="studentAddress">学生账户</label><input type="text" id="studentAddress"
                                                         placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
         <br><label for="amount">金额数量</label><input type="text" id="amount" placeholder="e.g., ******">
         <br>
-        <button onclick="App.sendMoneyToStudent()">发行积分</button>
+        <button onclick="App.sendMoneyToStudent()">发行金额</button>
     </div>
     <div class="block">
-        <h3>积分详情</h3>
-        <button onclick="App.getIssuedScoreAmount()">已发行积分总数</button>
-        <br>
-        <button onclick="App.getSettledScoreAmount()">已清算积分总数</button>
+        <h3>金额详情</h3>
+        <button onclick="App.getIssuedAmount()">已发行金额总数</button>
     </div>
 
     <div class="block">
