@@ -32,8 +32,8 @@
         <br><br><br><label for="goodId">商品ID</label><input type="text" id="goodId">
         <br><label for="goodPrice">商品价格</label><input type="text" id="goodPrice">
         <br>
-        <button onclick="App.addGood(currentAccount)">添加商品</button>
-        <button onclick="App.getGoodsByCook(currentAccount)">查看已添加商品</button>
+        <button onclick="App.addFood(currentAccount)">添加商品</button>
+        <button onclick="App.getFoodsByCook(currentAccount)">查看已添加商品</button>
     </div>
 
     <div class="block">
@@ -41,6 +41,11 @@
         <label for="settleAmount">清算积分数额</label><input type="text" id="settleAmount">
         <br>
         <button onclick="App.settleScoreWithBank(currentAccount)">清算积分</button>
+    </div>
+
+    <div class="block">
+        <h3>注销</h3>
+        <button id="logout" onclick="App.logout(currentAccount)">注销</button>
     </div>
 
     <br><br><br>

@@ -63,16 +63,16 @@ window.App = {
     student.getStudentBalance(currentAccount, DinningInstance, account)
   },
   // 客户购买商品
-  buyGood: function (currentAccount) {
-    student.buyGood(currentAccount, DinningInstance, account)
+  buyFood: function (currentAccount) {
+    student.buyFood(currentAccount, DinningInstance, account)
   },
   // 查看已经购买的物品
-  getGoodsByStudent: function (currentAccount) {
-    student.getGoodsByStudent(currentAccount, DinningInstance, account)
+  getFoodsByStudent: function (currentAccount) {
+    student.getFoodsByStudent(currentAccount, DinningInstance, account)
   },
   // 客户转让积分
-  transferDinningToAnotherFromStudent: function (currentAccount) {
-    student.transferDinningToAnotherFromStudent(currentAccount, DinningInstance, account)
+  transferMoneyToAnotherFromStudent: function (currentAccount) {
+    student.transferMoneyToAnotherFromStudent(currentAccount, DinningInstance, account)
   },
   // 商家注册
   newCook: function () {
@@ -86,41 +86,25 @@ window.App = {
   getCurrentCook: function (currentAccount) {
     cook.getCurrentCook(currentAccount)
   },
-  // 当前商家余额
-  getDinningWithCookAddr: function (currentAccount) {
-    cook.getDinningWithCookAddr(currentAccount, DinningInstance, account)
-  },
-  // 商家积分转让
-  transferDinningToAnotherFromCook: function (currentAccount) {
-    cook.transferDinningToAnotherFromCook(currentAccount, DinningInstance, account)
-  },
   // 商家添加商品
-  addGood: function (currentAccount) {
-    cook.addGood(currentAccount, DinningInstance, account)
+  addFood: function (currentAccount) {
+    cook.addFood(currentAccount, DinningInstance, account)
   },
   // 显示商家的所有商品
-  getGoodsByCook: function (currentAccount) {
-    cook.getGoodsByCook(currentAccount, DinningInstance, account)
-  },
-  // 商家清算积分
-  settleDinningWithBank: function (currentAccount) {
-    cook.settleDinningWithBank(currentAccount, DinningInstance, account)
+  getFoodsByCook: function (currentAccount) {
+    cook.getFoodsByCook(currentAccount, DinningInstance, account)
   },
   // 发行积分
-  sendDinningToStudent: function () {
-    bank.sendDinningToStudent(DinningInstance, account)
+  sendMoneyToStudent: function () {
+    bank.sendMoneyToStudent(DinningInstance, account)
   },
   // 银行登录
   bankLogin: function () {
     bank.bankLogin(DinningInstance, account)
   },
   // 查看已经发行的积分
-  getIssuedDinningAmount: function () {
-    bank.getIssuedDinningAmount(DinningInstance, account)
-  },
-  // 已经清算积分总数目
-  getSettledDinningAmount: function () {
-    bank.getSettledDinningAmount(DinningInstance, account)
+  getIssuedAmount: function () {
+    bank.getIssuedAmount(DinningInstance, account)
   },
   // 查询所有的区块链账户
   allAccounts: function () {
@@ -139,17 +123,13 @@ window.App = {
   setConsole: function (message) {
     const status = document.getElementById('console')
     status.innerHTML = message
-  },
-
-
-  logout: function (currentAccount) {
-    window.location.href = "index.html"
   }
+
+
 }
 
 window.addEventListener('load', function () {
   // 设置web3连接 http://127.0.0.1:8545
   window.web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8545'))
-  //window.web3 = new Web3(new Web3.providers.HttpProvider('http://47.101.175.159:9545'))
   window.App.init()
 })
