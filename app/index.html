@@ -21,19 +21,19 @@
     <h2>学生端</h2>
     <div class="block">
         <h3>学生注册</h3>
-        <label for="customerAddress">学生账户</label><input type="text" id="customerAddress"
+        <label for="studentAddress">学生账户</label><input type="text" id="studentAddress"
                                                              placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"/>
-        <br/><label for="customerPassword">密码</label><input type="text" id="customerPassword"
+        <br/><label for="studentPassword">密码</label><input type="text" id="studentPassword"
                                                             placeholder="e.g., 123456"/>
-        <button onclick="App.newCustomer()">学生注册</button>
+        <button onclick="App.newStudent()">学生注册</button>
     </div>
     <div class="block">
         <h3>客户登录</h3>
-        <label for="customerLoginAddr">客户地址</label><input type="text" id="customerLoginAddr"
+        <label for="studentLoginAddr">客户地址</label><input type="text" id="studentLoginAddr"
                                                                        placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
-        <br><label for="customerLoginPwd">密码</label><input type="text" id="customerLoginPwd"
+        <br><label for="studentLoginPwd">密码</label><input type="text" id="studentLoginPwd"
                                                             placeholder="e.g., ******">
-        <button id="customerLogin" onclick="App.customerLogin()">客户登录</button>
+        <button id="studentLogin" onclick="App.studentLogin()">客户登录</button>
 
     </div>
 
@@ -41,21 +41,21 @@
     <div class="block">
         <h3>商家注册</h3>
         <!-- 商户注册-->
-        <label for="merchantAddress">商户地址</label><input type="text" id="merchantAddress"
+        <label for="cookAddress">商户地址</label><input type="text" id="cookAddress"
                                                                      placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
-        <br><label for="merchantPassword">密码</label><input type="text" id="merchantPassword" placeholder="e.g., ******">
+        <br><label for="cookPassword">密码</label><input type="text" id="cookPassword" placeholder="e.g., ******">
         <br>
-        <button id="newMerchant" onclick="App.newMerchant()">商户注册</button>
+        <button id="newCook" onclick="App.newCook()">商户注册</button>
 
     </div>
 
     <div class="block">
         <h3>商家登录</h3>
-        <label for="merchantLoginAddr">商户地址</label><input type="text" id="merchantLoginAddr"
+        <label for="cookLoginAddr">商户地址</label><input type="text" id="cookLoginAddr"
                                                                        placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
-        <br><label for="merchantLoginPwd">密码</label><input type="text" id="merchantLoginPwd" placeholder="e.g., ******">
+        <br><label for="cookLoginPwd">密码</label><input type="text" id="cookLoginPwd" placeholder="e.g., ******">
         <br>
-        <button id="merchantLogin" onclick="App.merchantLogin()">商户登录</button>
+        <button id="cookLogin" onclick="App.cookLogin()">商户登录</button>
     </div>
 
 

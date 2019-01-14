@@ -13,13 +13,13 @@ module.exports = {
       { from: './app/index.html', to: 'index.html' }
     ]),
     new CopyWebpackPlugin([
-      { from: './app/customer.html', to: 'customer.html' }
+      { from: './app/student.html', to: 'student.html' }
     ]),
     new CopyWebpackPlugin([
       { from: './app/bank.html', to: 'bank.html' }
     ]),
     new CopyWebpackPlugin([
-      { from: './app/merchant.html', to: 'merchant.html' }
+      { from: './app/cook.html', to: 'cook.html' }
     ])
   ],
   module: {

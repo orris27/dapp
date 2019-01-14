@@ -1,4 +1,4 @@
-var Score = artifacts.require("./Score.sol");
+var Dinning = artifacts.require("./Dinning.sol");
 module.exports = function(deployer) {
-  deployer.deploy(Score);
+  deployer.deploy(Dinning);
 };
