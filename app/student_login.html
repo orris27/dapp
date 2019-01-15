@@ -34,7 +34,7 @@
     </nav>
 
 
-<div class="container" style="margin-top: 100px">
+<div style="margin-top: 100px">
 
         <div class="row">
           <div class="col">
@@ -42,12 +42,12 @@
 
           <div class="col-7">
             <div class="form-group">
-              <label for="studentLoginAddr">Account</label>
+              <label for="studentLoginAddr">用户名</label>
               <input type="text" class="form-control" id="studentLoginAddr" aria-describedby="emailHelp" placeholder="Enter account">
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
             <div class="form-group">
-              <label for="studentLoginPwd">Password</label>
+              <label for="studentLoginPwd">密码</label>
               <input type="password" class="form-control" id="studentLoginPwd" placeholder="Password">
             </div>
             <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
@@ -57,10 +57,10 @@
               <div class="col">
                 <!-- <a id="toSignup"  class="btn btn-link btn-lg" href="student_signup.html">注册</a> -->
                 没有账号?
-                <a href="student_signup.html" class="btn btn-link btn-lg active" role="button" aria-pressed="true">注册</a>
+                <a href="student_signup.html" class="btn btn-link btn-lg active"  style="color: #666;"  role="button" aria-pressed="true">注册</a>
               </div>
               <div class="col">
-                <button id="studentLogin" class="btn btn-primary" onclick="App.studentLogin()">学生登录</button>
+                <button id="studentLogin" class="btn btn-secondary" onclick="App.studentLogin()">学生登录</button>
               </div>
 
             </div>

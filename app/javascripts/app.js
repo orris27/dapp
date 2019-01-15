@@ -8,6 +8,9 @@ const cook = require('./cook')
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 
+import { sha256, sha224 } from 'js-sha256';
+
+
 // Import our contract artifacts and turn them into usable abstractions.
 import DinningArtifacts from '../../build/contracts/Dinning'
 
@@ -19,6 +22,9 @@ let DinningInstance
 // For application bootstrapping, check out window.addEventListener below.
 let accounts
 let account
+let message
+
+
 
 window.App = {
   // 获得合约实例
@@ -135,7 +141,10 @@ window.App = {
 
 
   logout: function (currentAccount) {
-    window.location.href = "index.html"
+    // window.location.href = "index.html"
+    sessionStorage.removeItem('account')
+    sessionStorage.removeItem('cook_account')
+    location.reload()
   }
 
 

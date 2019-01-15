@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,67 +8,72 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
-    <title>学生注册</title>
+    <title>登录</title>
     <script src="./app.js"></script>
 </head>
-
 <body class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">导航</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">导航</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="student.html">学生端</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="cook.html">厨师端</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="admin.html">管理后台</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
-
-<div  style="margin-top: 100px">
-      <div class="row">
-        <div class="col">
-        </div>
-
-        <div class="col-7">
-          <div class="form-group">
-            <label for="studentAddress">用户名</label>
-            <input type="text" class="form-control" id="studentAddress" aria-describedby="emailHelp" placeholder="Enter account">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-          </div>
-          <div class="form-group">
-            <label for="studentPasssword">密码</label>
-            <input type="password" class="form-control" id="studentPassword" placeholder="Password">
-          </div>
-          <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
-          <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
-          <div class="row">
-
-            <div class="col">
-              <!-- <a id="toSignup"  class="btn btn-link btn-lg" href="student_signup.html">注册</a> -->
-              已经有账号?
-              <a href="student_login.html" class="btn btn-link btn-lg" style="color: #666;" role="button" aria-pressed="true">登录</a>
-            </div>
-            <div class="col">
-              <button id="studentSignup" class="btn btn-secondary" onclick="App.newStudent()">学生注册</button>
-            </div>
-
-          </div>
-        </div>
-        <div class="col">
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="cook.html">学生端</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cook.html">厨师端</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="admin.html">管理后台</a>
+          </li>
+        </ul>
       </div>
+    </nav>
+
+
+<div style="margin-top: 100px">
+
+        <div class="row">
+          <div class="col">
+          </div>
+
+          <div class="col-7">
+            <div class="form-group">
+              <label for="cookLoginAddr">用户名</label>
+              <input type="text" class="form-control" id="cookLoginAddr" aria-describedby="emailHelp" placeholder="Enter account">
+              <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+            <div class="form-group">
+              <label for="cookLoginPwd">密码</label>
+              <input type="password" class="form-control" id="cookLoginPwd" placeholder="Password">
+            </div>
+            <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
+            <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
+            <div class="row">
+
+              <div class="col">
+                <!-- <a id="toSignup"  class="btn btn-link btn-lg" href="cook_signup.html">注册</a> -->
+                没有账号?
+                <a href="cook_signup.html" class="btn btn-link btn-lg active"  style="color: #666;"  role="button" aria-pressed="true">注册</a>
+              </div>
+              <div class="col">
+                <button id="cookLogin" class="btn btn-secondary" onclick="App.cookLogin()">登录</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+          </div>
+
+        </div>
+
+
+
+
+
 </div>
 
 

@@ -9,7 +9,7 @@ module.exports = {
         sessionStorage.setItem("account", address)
         window.location.href = 'admin.html'
       } else {
-        window.alert('不是银行账户，登录失败')
+        window.alert('不是管理账户，登录失败')
       }
     })
   },

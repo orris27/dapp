@@ -25,6 +25,12 @@ module.exports = {
       { from: './app/student_signup.html', to: 'student_signup.html' }
     ]),
     new CopyWebpackPlugin([
+      { from: './app/cook_signup.html', to: 'cook_signup.html' }
+    ]),
+    new CopyWebpackPlugin([
+      { from: './app/cook_login.html', to: 'cook_login.html' }
+    ]),
+    new CopyWebpackPlugin([
       { from: './app/cook.html', to: 'cook.html' }
     ])
   ],

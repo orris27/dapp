@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
-    <title>学生注册</title>
+    <title>注册</title>
     <script src="./app.js"></script>
 </head>
 
@@ -25,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="student.html">学生端</a>
+          <a class="nav-link" href="cook.html">学生端</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="cook.html">厨师端</a>
@@ -46,25 +43,25 @@
 
         <div class="col-7">
           <div class="form-group">
-            <label for="studentAddress">用户名</label>
-            <input type="text" class="form-control" id="studentAddress" aria-describedby="emailHelp" placeholder="Enter account">
+            <label for="cookAddress">用户名</label>
+            <input type="text" class="form-control" id="cookAddress" aria-describedby="emailHelp" placeholder="Enter account">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
-            <label for="studentPasssword">密码</label>
-            <input type="password" class="form-control" id="studentPassword" placeholder="Password">
+            <label for="cookPasssword">密码</label>
+            <input type="password" class="form-control" id="cookPassword" placeholder="Password">
           </div>
           <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
           <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
           <div class="row">
 
             <div class="col">
-              <!-- <a id="toSignup"  class="btn btn-link btn-lg" href="student_signup.html">注册</a> -->
+              <!-- <a id="toSignup"  class="btn btn-link btn-lg" href="cook_signup.html">注册</a> -->
               已经有账号?
-              <a href="student_login.html" class="btn btn-link btn-lg" style="color: #666;" role="button" aria-pressed="true">登录</a>
+              <a href="_login.html" class="btn btn-link btn-lg" style="color: #666;" role="button" aria-pressed="true">登录</a>
             </div>
             <div class="col">
-              <button id="studentSignup" class="btn btn-secondary" onclick="App.newStudent()">学生注册</button>
+              <button id="cookSignup" class="btn btn-secondary" onclick="App.newCook()">注册</button>
             </div>
 
           </div>

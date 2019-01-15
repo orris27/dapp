@@ -1,8 +1,11 @@
 const utils = require('./utils')
+var sha256 = require('js-sha256');
+
 module.exports = {
   // 注册客户
   newStudent: function (DinningInstance, account) {
-    const address = document.getElementById('studentAddress').value
+    const address1 = document.getElementById('studentAddress').value
+    const address = '0x' + sha256.sha256(address1)
     const password = document.getElementById('studentPassword').value
     console.log(address)
     console.log(password)
@@ -14,6 +17,8 @@ module.exports = {
           console.log(r.args)
           if (r.args.isSuccess === true) {
             window.App.setStatus('注册成功')
+            window.location.href = "student.html"
+            sessionStorage.setItem('account', student)
           } else {
             window.App.setStatus('账户已经注册')
           }
@@ -25,7 +30,8 @@ module.exports = {
   },
   // 客户登录
   studentLogin: function (DinningInstance, account) {
-    const address = document.getElementById('studentLoginAddr').value
+    const address1 = document.getElementById('studentLoginAddr').value
+    const address = '0x' + sha256.sha256(address1)
     const password = document.getElementById('studentLoginPwd').value
     DinningInstance.getStudentPassword(address, { from: account, gas: 3000000 }).then(function (result) {
       if (result[0]) {

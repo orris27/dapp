@@ -1,32 +1,36 @@
 const utils = require('./utils')
+var sha256 = require('js-sha256');
+
 module.exports = {
 
-  // 注册商家
   newCook: function (DinningInstance, account) {
-    const address = document.getElementById('cookAddress').value
+    const address1 = document.getElementById('cookAddress').value
+    const address = '0x' + sha256.sha256(address1)
     const password = document.getElementById('cookPassword').value
     DinningInstance.newCook(address, password, { from: account, gas: 1000000 }).then(function () {
       DinningInstance.NewCook(function (error, event) {
         if (!error) {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)
+          sessionStorage.setItem('cook_account', address)
+          window.location.href = "cook.html"
         }
       })
     })
   },
-  // 商家登录
+
   cookLogin: function (DinningInstance, account) {
-    const address = document.getElementById('cookLoginAddr').value
+    const address1 = document.getElementById('cookLoginAddr').value
+    const address = '0x' + sha256.sha256(address1)
+    console.log(address)
     const password = document.getElementById('cookLoginPwd').value
     DinningInstance.getCookPassword(address, { from: account }).then(function (result) {
-      // console.log(password)
-      // console.log(utils.hexCharCodeToStr(result[1]))
       if (result[0]) {
         // 查询密码成功
         if (password.localeCompare(utils.hexCharCodeToStr(result[1])) === 0) {
           console.log('登录成功')
           // 跳转到商户界面
-          sessionStorage.setItem("account", address)
+          sessionStorage.setItem("cook_account", address)
           window.location.href = 'cook.html'
         } else {
           console.log('密码错误,登录失败')

@@ -1,6 +1,4 @@
-/**
- * Created by chenyufeng on 12/24/16.
- */
+
 // 十六进制转化为字符串
 module.exports = {
   hexCharCodeToStr: function (hexCharCodeStr) {
