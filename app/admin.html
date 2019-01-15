@@ -10,7 +10,11 @@
     <script src="./app.js"></script>
 
     <script>
-      const currentAccount = sessionStorage.getItem("account")
+      const currentAccount = sessionStorage.getItem("admin_account")
+      console.log(currentAccount)
+      if (currentAccount == null) {
+        window.location.href = "admin_login.html"
+      }
     </script>
 
 </head>

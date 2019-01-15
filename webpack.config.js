@@ -9,14 +9,20 @@ module.exports = {
   },
   plugins: [
     // Copy our app's index.html to the build folder.
-    new CopyWebpackPlugin([
-      { from: './app/index.html', to: 'index.html' }
-    ]),
+    // new CopyWebpackPlugin([
+    //   { from: './app/index.html', to: 'admin.html' }
+    // ]),
     new CopyWebpackPlugin([
       { from: './app/student.html', to: 'student.html' }
     ]),
     new CopyWebpackPlugin([
-      { from: './app/admin.html', to: 'admin.html' }
+      { from: './app/admin.html', to: 'index.html' }
+    ]),
+    new CopyWebpackPlugin([
+      { from: './app/admin_login.html', to: 'admin_login.html' }
+    ]),
+    new CopyWebpackPlugin([
+      { from: './app/admin_login.html', to: 'admin.html' }
     ]),
     new CopyWebpackPlugin([
       { from: './app/student_login.html', to: 'student_login.html' }
