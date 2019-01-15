@@ -49,6 +49,7 @@ window.App = {
   // 新建客户
   newStudent: function () {
     student.newStudent(DinningInstance, account)
+
   },
   // 客户登录
   studentLogin: function () {
@@ -116,13 +117,20 @@ window.App = {
   },
   // 状态栏显示
   setStatus: function (message) {
-    const status = document.getElementById('status')
-    status.innerHTML = message
+    alert(message)
+    // const status = document.getElementById('status')
+    // status.innerHTML = message
+    // setTimeout(() => {
+    //   const info = document.getElementById('info')
+    //   info.hidden = true
+    //   console.log('ok')
+    // }, 1.5 * 1000)
   },
   // 显示console
   setConsole: function (message) {
     const status = document.getElementById('console')
     status.innerHTML = message
+
   },
 
 

@@ -4,6 +4,8 @@ module.exports = {
   newStudent: function (DinningInstance, account) {
     const address = document.getElementById('studentAddress').value
     const password = document.getElementById('studentPassword').value
+    console.log(address)
+    console.log(password)
     console.log(address + ' ' + password)
     DinningInstance.newStudent(address, password, { from: account, gas: 3000000 }).then(function () {
       DinningInstance.NewStudent(function (e, r) {

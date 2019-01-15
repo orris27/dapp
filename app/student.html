@@ -7,19 +7,38 @@
     <script src="./app.js"></script>
     <script>
       const currentAccount = sessionStorage.getItem("account")
+      console.log(currentAccount)
+      if (currentAccount == null) {
+        window.location.href = "student_login.html"
+      }
     </script>
 
 </head>
-<body>
+
+<body class="container">
 <div>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">导航</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <h1>线上食堂订餐案例</h1>
-    <div id="info">
-        <p id="status">Status</p>
-    </div>
-    <br/>
-    <br/>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="student.html">学生端</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="cook.html">厨师端</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="admin.html">管理后台</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <h2>学生端</h2>
     <div class="block">
         <h3>查询信息</h3>

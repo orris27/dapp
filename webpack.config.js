@@ -19,6 +19,12 @@ module.exports = {
       { from: './app/admin.html', to: 'admin.html' }
     ]),
     new CopyWebpackPlugin([
+      { from: './app/student_login.html', to: 'student_login.html' }
+    ]),
+    new CopyWebpackPlugin([
+      { from: './app/student_signup.html', to: 'student_signup.html' }
+    ]),
+    new CopyWebpackPlugin([
       { from: './app/cook.html', to: 'cook.html' }
     ])
   ],
