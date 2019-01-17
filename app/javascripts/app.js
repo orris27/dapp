@@ -123,7 +123,8 @@ window.App = {
   logout: function (currentAccount) {
     sessionStorage.removeItem('account')
     sessionStorage.removeItem('cook_account')
-    sessionStorage.removeItem('ook_account')
+    sessionStorage.removeItem('admin_account')
+    sessionStorage.removeItem('username')
     location.reload()
   }
 

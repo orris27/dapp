@@ -1,90 +1,35 @@
 pragma solidity ^0.4.24;
 
-contract Utils {
-
-    function stringToBytes32(string memory source)  internal pure  returns (bytes32 result) {
-        assembly {
-            result := mload(add(source, 32))
-        }
-    }
-
-    function bytes32ToString(bytes32 x)  internal pure  returns (string) {
-        bytes memory bytesString = new bytes(32);
-        uint charCount = 0;
-        for (uint j = 0; j < 32; j++) {
-            byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));
-            if (char != 0) {
-                bytesString[charCount] = char;
-                charCount++;
-            }
-        }
-        bytes memory bytesStringTrimmed = new bytes(charCount);
-        for (j = 0; j < charCount; j++) {
-            bytesStringTrimmed[j] = bytesString[j];
-        }
-        return string(bytesStringTrimmed);
-    }
-}
-
-contract Dinning is Utils {
+contract Dinning {
 
 
-    address owner; //合约的拥有者，学校
-    uint issuedAmount; //银行已经发行的积分总数
+  /*
+   * Student
+   */
+
 
     struct Student {
-        address studentAddr; //客户address
-        bytes32 password; //客户密码
-        uint balance; //积分余额
-        bytes32[] boughtFoods; //购买的商品数组
-    }
-
-    struct Cook {
-        address cookAddr; //商户address
-        bytes32 password; //商户密码
-        bytes32[] madeFoods; //发布的商品数组
-    }
-
-    struct Food {
-        bytes32 foodId; //商品Id;
-        uint price; //价格；
-        address belong; //商品属于哪个商户address；
+        address studentAddr; //学生的address
+        bytes32 password; //学生的密码
+        uint balance; //余额
+        bytes32[] boughtFoods; //已经购买的食物
     }
 
 
-    mapping(address => Student) student;
-    mapping(address => Cook) cook;
-    mapping(bytes32 => Food) food; //根据商品Id查找该件商品
+    mapping(address => Student) student; // 通过address来获得学生的结构体
 
-    address[] students; //已注册的客户数组
-    address[] cooks; //已注册的商户数组
-    bytes32[] foods; //已经上线的商品数组
-
-    //增加权限控制，某些方法只能由合约的创建者调用
-    modifier onlyOwner(){
-        if (msg.sender == owner) _;
-    }
-
-    //构造函数
-    constructor() public {
-        owner = msg.sender;
-    }
+    address[] students; // 所有学生
 
 
-    //返回合约调用者地址
-    function getOwner() constant public  returns (address) {
-        return owner;
-    }
 
-    //注册一个客户
+    // 学生注册
     event NewStudent(address sender, bool isSuccess, string password);
-
     function newStudent(address _studentAddr, string _password) public {
-        //判断是否已经注册
+        // 判断是否已经注册
         if (!isStudentRegistered(_studentAddr)) {
-            //还未注册
+            // 还未注册
             student[_studentAddr].studentAddr = _studentAddr;
-            student[_studentAddr].password = stringToBytes32(_password);
+            student[_studentAddr].password = stb32(_password);
             student[_studentAddr].balance = 50;
             students.push(_studentAddr);
             emit NewStudent(msg.sender, true, _password);
@@ -96,28 +41,8 @@ contract Dinning is Utils {
         }
     }
 
-    //注册一个商户
-    event NewCook(address sender, bool isSuccess, string message);
 
-    function newCook(address _cookAddr,
-        string _password) public {
-
-        //判断是否已经注册
-        if (!isCookRegistered(_cookAddr)) {
-            //还未注册
-            cook[_cookAddr].cookAddr = _cookAddr;
-            cook[_cookAddr].password = stringToBytes32(_password);
-            cooks.push(_cookAddr);
-            emit NewCook(msg.sender, true, "注册成功");
-            return;
-        }
-        else {
-            emit NewCook(msg.sender, false, "该账户已经注册");
-            return;
-        }
-    }
-
-    //判断一个客户是否已经注册
+    //判断学生是否已经注册
     function isStudentRegistered(address _studentAddr) internal view returns (bool)  {
         for (uint i = 0; i < students.length; i++) {
             if (students[i] == _studentAddr) {
@@ -127,19 +52,9 @@ contract Dinning is Utils {
         return false;
     }
 
-    //判断一个商户是否已经注册
-    function isCookRegistered(address _cookAddr) public view returns (bool) {
-        for (uint i = 0; i < cooks.length; i++) {
-            if (cooks[i] == _cookAddr) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //查询用户密码
+    // 查询学生密码
     function getStudentPassword(address _studentAddr) constant public returns (bool, bytes32) {
-        //先判断该用户是否注册
+        // 先判断该用户是否注册
         if (isStudentRegistered(_studentAddr)) {
             return (true, student[_studentAddr].password);
         }
@@ -148,18 +63,8 @@ contract Dinning is Utils {
         }
     }
 
-    //查询商户密码
-    function getCookPassword(address _cookAddr) constant public returns (bool, bytes32) {
-        //先判断该商户是否注册
-        if (isCookRegistered(_cookAddr)) {
-            return (true, cook[_cookAddr].password);
-        }
-        else {
-            return (false, "");
-        }
-    }
 
-    //银行发送积分给客户,只能被银行调用，且只能发送给客户
+    // 学校给学生点餐的钱
     event SendMoneyToStudent(address sender, string message);
 
     function sendMoneyToStudent(address _receiver, uint _amount) onlyOwner public {
@@ -177,16 +82,14 @@ contract Dinning is Utils {
         }
     }
 
-    //根据客户address查找余额
+    //根据学生的address查找余额
     function getStudentBalance(address studentAddr) constant public returns (uint) {
         return student[studentAddr].balance;
     }
 
 
-    //两个账户转移积分，任意两个账户之间都可以转移，客户商户都调用该方法
-    //_senderType表示调用者类型，0表示客户，1表示商户
+    //两个学生转移金额
     event TransferMoney(address sender, string message);
-
     function transferMoney(uint _senderType,
         address _sender,
         address _receiver,
@@ -217,19 +120,104 @@ contract Dinning is Utils {
         }
     }
 
-    //银行查找已经发行的积分总数
-    function getIssuedAmount() constant public returns (uint) {
-        return issuedAmount;
+
+
+    // 学生购买食物
+    event BuyFood(address sender, bool isSuccess, string message);
+    function buyFood(address _studentAddr, string _foodId) public {
+        bytes32 tempId = stb32(_foodId);
+        if (isFoodAdded(tempId)) {
+            if (student[_studentAddr].balance < food[tempId].price) {
+                emit BuyFood(msg.sender, false, "余额不足，购买食物失败");
+                return;
+            }
+            else {
+                student[_studentAddr].balance -= food[tempId].price;
+                student[_studentAddr].boughtFoods.push(tempId);
+                emit BuyFood(msg.sender, true, "购买食物成功");
+                return;
+            }
+        }
+        else {
+            emit BuyFood(msg.sender, false, "输入食物Id不存在，请确定后购买");
+            return;
+        }
+    }
+
+    // 获得学生购买的所有食物
+    function getFoodsByStudent(address _studentAddr) constant public returns (bytes32[]) {
+        return student[_studentAddr].boughtFoods;
     }
 
 
-    //商户添加一件商品
+
+
+  /*
+   * Cook
+   */
+
+
+    struct Cook {
+        address cookAddr; //厨师的address
+        bytes32 password; //厨师密码
+        bytes32[] madeFoods; //厨师烹饪好的食物
+    }
+
+    mapping(address => Cook) cook; // 通过address来获得厨师的结构体
+    address[] cooks; // 所有厨师
+
+
+
+    // 厨师注册
+    event NewCook(address sender, bool isSuccess, string message);
+    function newCook(address _cookAddr,
+        string _password) public {
+
+        //判断是否已经注册
+        if (!isCookRegistered(_cookAddr)) {
+            //还未注册
+            cook[_cookAddr].cookAddr = _cookAddr;
+            cook[_cookAddr].password = stb32(_password);
+            cooks.push(_cookAddr);
+            emit NewCook(msg.sender, true, "注册成功");
+            return;
+        }
+        else {
+            emit NewCook(msg.sender, false, "该账户已经注册");
+            return;
+        }
+    }
+
+
+
+    //判断厨师是否已经注册
+    function isCookRegistered(address _cookAddr) public view returns (bool) {
+        for (uint i = 0; i < cooks.length; i++) {
+            if (cooks[i] == _cookAddr) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //查询厨师密码
+    function getCookPassword(address _cookAddr) constant public returns (bool, bytes32) {
+        //先判断该厨师是否注册
+        if (isCookRegistered(_cookAddr)) {
+            return (true, cook[_cookAddr].password);
+        }
+        else {
+            return (false, "");
+        }
+    }
+
+
+
+    // 厨师烹饪食物
     event AddFood(address sender, bool isSuccess, string message);
-
     function addFood(address _cookAddr, string _foodId, uint _price) public {
-        bytes32 tempId = stringToBytes32(_foodId);
+        bytes32 tempId = stb32(_foodId);
 
-        //首先判断该商品Id是否已经存在
         if (!isFoodAdded(tempId)) {
             food[tempId].foodId = tempId;
             food[tempId].price = _price;
@@ -246,44 +234,56 @@ contract Dinning is Utils {
         }
     }
 
-    //商户查找自己的商品数组
+    // 获得厨师烹饪的所有食物
     function getFoodsByCook(address _cookAddr) constant public returns (bytes32[]) {
         return cook[_cookAddr].madeFoods;
     }
+  /*
+   * Admin / School
+   */
 
-    //用户用积分购买一件商品
-    event BuyFood(address sender, bool isSuccess, string message);
+    address owner; //合约的拥有者:学校
+    uint issuedAmount; //银行发行的金额数量
 
-    function buyFood(address _studentAddr, string _foodId) public {
-        //首先判断输入的商品Id是否存在
-        bytes32 tempId = stringToBytes32(_foodId);
-        if (isFoodAdded(tempId)) {
-            //该件商品已经添加，可以购买
-            if (student[_studentAddr].balance < food[tempId].price) {
-                emit BuyFood(msg.sender, false, "余额不足，购买食物失败");
-                return;
-            }
-            else {
-                //对这里的方法抽取
-                student[_studentAddr].balance -= food[tempId].price;
-                student[_studentAddr].boughtFoods.push(tempId);
-                emit BuyFood(msg.sender, true, "购买食物成功");
-                return;
-            }
-        }
-        else {
-            //没有这个Id的商品
-            emit BuyFood(msg.sender, false, "输入食物Id不存在，请确定后购买");
-            return;
-        }
+    modifier onlyOwner(){
+        if (msg.sender == owner) _;
     }
 
-    //客户查找自己的商品数组
-    function getFoodsByStudent(address _studentAddr) constant public returns (bytes32[]) {
-        return student[_studentAddr].boughtFoods;
+    constructor() public {
+        owner = msg.sender;
     }
 
-    //首先判断输入的商品Id是否存在
+    function getOwner() constant public  returns (address) {
+        return owner;
+    }
+
+
+
+    // 获得学校发出的钱的数量
+    function getIssuedAmount() constant public returns (uint) {
+        return issuedAmount;
+    }
+  /*
+   * Food
+   */
+
+
+    struct Food {
+        bytes32 foodId; //食物id;
+        uint price; //食物的价格；
+        address belong; //食物是被哪个厨师给烹饪的
+    }
+
+
+    mapping(bytes32 => Food) food; // 通过商品id查找该件商品
+    bytes32[] foods; // 所有食物
+
+    // 增加权限控制，某些方法只能由合约的创建者调用
+
+
+
+
+    // 判断食物是不是已经被烹饪好了
     function isFoodAdded(bytes32 _foodId) internal view returns (bool) {
         for (uint i = 0; i < foods.length; i++) {
             if (foods[i] == _foodId) {
@@ -292,5 +292,42 @@ contract Dinning is Utils {
         }
         return false;
     }
+
+
+
+    function stb32(string memory source)  internal pure  returns (bytes32 result) {
+        assembly{ result := mload(add(source, 32))}
+
+
+
+        
+
+
+
+    }
+
+    function b32tb(bytes32 x)  internal pure  returns (string) {
+
+        bytes memory bytesString = new bytes(32);
+
+        uint charCount = 0;
+
+        for (uint j = 0; j < 32; j++) {
+            byte char = byte(bytes32(uint(x) * 2 ** (8 * j)));
+            if (char != 0) {
+                bytesString[charCount] = char;
+                charCount++;
+            }
+        }
+
+        bytes memory bytesStringTrimmed = new bytes(charCount);
+
+        for (j = 0; j < charCount; j++) {
+            bytesStringTrimmed[j] = bytesString[j];
+        }
+
+        return string(bytesStringTrimmed);
+    }
+
 
 }
