@@ -1,9 +1,11 @@
 // Import the page's CSS. Webpack will know what to do with it.
 import '../stylesheets/app.css'
+import '../stylesheets/bootstrap.css'
 
 const student = require('./student')
 const admin = require('./admin')
 const cook = require('./cook')
+const header = require('./header')
 // Import libraries we need.
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
@@ -30,6 +32,7 @@ window.App = {
   // 获得合约实例
   init: function () {
     // 设置web3连接
+
     DinningContract.setProvider(window.web3.currentProvider)
     // Get the initial account balance so it can be displayed.
     window.web3.eth.getAccounts(function (err, accs) {
@@ -52,10 +55,15 @@ window.App = {
       console.log(e, null)
     })
   },
+  showHeader: function () {
+    header.showHeader()
+  },
   // 新建客户
   newStudent: function () {
     student.newStudent(DinningInstance, account)
-
+  },
+  getUsername: function () {
+    document.getElementById('usernameLabel').innerHTML = sessionStorage.getItem('username')
   },
   // 客户登录
   studentLogin: function () {

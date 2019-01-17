@@ -56,7 +56,8 @@ module.exports = {
   //查询余额
   getStudentBalance: function (currentAccount, DinningInstance, account) {
     DinningInstance.getStudentBalance.call(currentAccount, { from: account }).then(function (value) {
-      window.App.setStatus('当前余额：' + value.valueOf())
+      // window.App.setStatus('当前余额：' + value.valueOf())
+      document.getElementById('balanceLabel').innerHTML = value.valueOf()
     }).catch(function (e) {
       console.log(e)
       window.App.setStatus('出现异常，查询余额失败！')
@@ -66,13 +67,14 @@ module.exports = {
   getFoodsByStudent: function (currentAccount, DinningInstance, account) {
     DinningInstance.getFoodsByStudent.call(currentAccount, { from: account }).then(function (result) {
       if (result.length === 0) {
-        window.App.setStatus('空...')
+        document.getElementById('foodLabel').innerHTML = 'empty..'
       } else {
         let goods = ''
         result.forEach(e => {
           goods += utils.hexCharCodeToStr(e) + ', '
         })
-        window.App.setStatus(goods.substr(0, goods.length - 2))
+        // window.App.setStatus(goods.substr(0, goods.length - 2))
+        document.getElementById('foodLabel').innerHTML = goods.substr(0, goods.length - 2)
       }
     })
   },
