@@ -4,8 +4,8 @@ module.exports = {
     const address = document.getElementById('adminLoginAddr').value
     DinningInstance.getOwner({ from: account }).then(function (result) {
       if (address.localeCompare(result) === 0) {
-        sessionStorage.setItem("account", address)
-        window.location.href = 'admin.html'
+        sessionStorage.setItem("admin_account", address)
+        window.location.href = 'index.html'
       } else {
         window.alert('不是管理账户，登录失败')
       }

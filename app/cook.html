@@ -20,32 +20,73 @@
 <body class="container">
 
 
-    <h2>厨师端</h2>
-    <div class="block">
-        <h3>查询信息</h3>
-        <button id="getCurrentCook" onclick="App.getCurrentCook(username)">当前账户</button>
+
+
+
+    <div style= "margin-top:50px"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active btn-outline-secondary" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">查询信息</a>
+            <a class="nav-link btn-outline-secondary" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">制作食物</a>
+            <a class="nav-link btn-outline-secondary" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" onClick="App.logout(currentAccount)" role="tab" aria-controls="v-pills-settings" aria-selected="false">注销账户</a>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+              <div class="card card-body">
+                <div class="row">
+                  <div class="col">
+                  <button style="width: 200px" class="btn btn-secondary" onclick="App.getUsername()">当前账号</button>
+                  </div>
+                  <div class="col">
+                  <label id="usernameLabel" for=""></label>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+              <form action="">
+
+              <div class="form-group">
+                <label for="goodId">食物ID</label>
+                <input class="form-control" type="text" id="goodId" placeholder="food id">
+              </div>
+              <div class="form-group">
+                <label for="goodPrice">食物价格</label>
+                <input class='form-control' placeholder='food price' type="text" id="goodPrice">
+              </div>
+
+                <button class="btn btn-secondary" onclick="App.addFood(currentAccount)">添加食物</button>
+                <button style="margin-top: 20px" class="btn btn-secondary" onclick="App.getFoodsByCook(currentAccount)">查看已添加食物</button>
+              </form>
+
+
+
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="block">
-        <h3>制作食物</h3>
-        <br><br><br><label for="goodId">食物ID</label><input type="text" id="goodId">
-        <br><label for="goodPrice">食物价格</label><input type="text" id="goodPrice">
-        <br>
-        <button onclick="App.addFood(currentAccount)">添加食物</button>
-        <button onclick="App.getFoodsByCook(currentAccount)">查看已添加食物</button>
-    </div>
-    <div class="block">
-        <h3>注销</h3>
-        <button id="logout" onclick="App.logout(currentAccount)">注销</button>
-    </div>
 
-    <br><br><br>
-    <br/>
-    <h2>测试信息</h2>
-    <div>
-        <button onclick="App.allAccounts()">Account(console)</button>
-        <br><br>
-    </div>
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

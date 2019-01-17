@@ -122,12 +122,21 @@ window.App = {
     admin.getIssuedAmount(DinningInstance, account)
   },
   // 查询所有的区块链账户
-  allAccounts: function () {
-    let allAccount = ''
+  fillAdmin: function () {
+    // let allAccount = ''
+    let a = 0
+    let adminAccount = ''
     window.web3.eth.accounts.forEach(e => {
-      allAccount += e + '\n'
+      if (a == 0) {
+        adminAccount = e
+        a += 1
+      }
+      // allAccount += e + '\n'
     })
-    window.App.setConsole(allAccount)
+    // alert(adminAccount)
+    document.getElementById('adminLoginAddr').value = adminAccount
+
+    // window.App.setConsole(allAccount)
   },
   // 状态栏显示
   setStatus: function (message) {

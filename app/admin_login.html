@@ -30,15 +30,16 @@
               <input type="text" class="form-control" id="adminLoginAddr" aria-describedby="emailHelp" placeholder="Enter account">
               <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="adminLoginPwd">密码</label>
               <input type="password" class="form-control" id="adminLoginPwd" placeholder="Password">
-            </div>
+            </div> -->
             <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
             <!-- <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal">Login</button> -->
             <div class="row">
 
               <div class="col">
+                <button class="btn-lnk btn" onClick="App.fillAdmin()">获取admin账号</button>
               </div>
               <div class="col">
                 <button id="adminLogin" class="btn btn-secondary" onclick="App.adminLogin()">登录</button>
