@@ -8,6 +8,7 @@
     <script src="./app.js"></script>
     <script>
       const currentAccount = sessionStorage.getItem("cook_account")
+      const username = sessionStorage.getItem("username")
       console.log(currentAccount)
       if (currentAccount == null) {
         window.location.href = "cook_login.html"
@@ -42,7 +43,7 @@
     <h2>厨师端</h2>
     <div class="block">
         <h3>查询信息</h3>
-        <button id="getCurrentCook" onclick="App.getCurrentCook(currentAccount)">当前账户</button>
+        <button id="getCurrentCook" onclick="App.getCurrentCook(username)">当前账户</button>
     </div>
 
     <div class="block">

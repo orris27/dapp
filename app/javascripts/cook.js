@@ -31,6 +31,7 @@ module.exports = {
           console.log('登录成功')
           // 跳转到商户界面
           sessionStorage.setItem("cook_account", address)
+          sessionStorage.setItem("username", address1)
           window.location.href = 'cook.html'
         } else {
           console.log('密码错误,登录失败')

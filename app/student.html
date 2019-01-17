@@ -7,6 +7,7 @@
     <script src="./app.js"></script>
     <script>
       const currentAccount = sessionStorage.getItem("account")
+      const username = sessionStorage.getItem('username')
       console.log(currentAccount)
       if (currentAccount == null) {
         window.location.href = "student_login.html"
@@ -50,11 +51,11 @@
         <div class="card card-body">
 
         <br>
-        <button onclick="App.getCurrentStudent(currentAccount)">当前学生</button>
+        <button class="btn btn-secondary" onclick="App.getCurrentStudent(username)">当前学生</button>
         <br>
-        <button onclick="App.getStudentBalance(currentAccount)">当前余额</button>
+        <button class="btn btn-secondary" onclick="App.getStudentBalance(currentAccount)">当前余额</button>
         <br>
-        <button onclick="App.getFoodsByStudent(currentAccount)">查看已购买食物</button>
+        <button class="btn btn-secondary" onclick="App.getFoodsByStudent(currentAccount)">查看已购买食物</button>
 
 
 

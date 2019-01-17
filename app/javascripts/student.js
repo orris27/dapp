@@ -40,6 +40,7 @@ module.exports = {
           console.log('登录成功')
           // 跳转到用户界面
           sessionStorage.setItem("account", address)
+          sessionStorage.setItem("username", address1)
           window.location.href = 'student.html'
         } else {
           console.log('密码错误，登录失败')
