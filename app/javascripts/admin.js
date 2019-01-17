@@ -1,3 +1,6 @@
+
+
+var sha256 = require('js-sha256');
 module.exports = {
 
   adminLogin: function (DinningInstance, account) {
@@ -13,7 +16,8 @@ module.exports = {
   },
 
   sendMoneyToStudent: function (DinningInstance, account) {
-    const address = document.getElementById('studentAddress').value
+    const address1 = document.getElementById('studentAddress').value
+    const address = '0x' + sha256.sha256(address1)
     const amount = parseInt(document.getElementById('amount').value)
     console.log(amount)
     DinningInstance.sendMoneyToStudent(address, amount, { from: account })
@@ -27,7 +31,7 @@ module.exports = {
 
   getIssuedAmount: function (DinningInstance, account) {
     DinningInstance.getIssuedAmount({ from: account }).then(function (result) {
-      window.App.setStatus('已发行的餐券总数为：' + result)
+      document.getElementById('amountLabel').innerHTML = result
     })
   },
 }

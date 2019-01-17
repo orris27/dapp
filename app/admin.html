@@ -5,7 +5,6 @@
     <title>食堂管理员</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link href="./stylesheets/app.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <script src="./app.js"></script>
 
@@ -21,42 +20,88 @@
 </head>
 <body class="container">
 
-<div>
-    <h2>管理员端</h2>
 
 
-    <div class="block">
-        <h3>发行金额</h3>
-        <label for="studentAddress">学生账户</label><input type="text" id="studentAddress"
-                                                        placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
-        <br><label for="amount">金额数量</label><input type="text" id="amount" placeholder="e.g., ******">
-        <br>
-        <button onclick="App.sendMoneyToStudent()">发行金额</button>
-    </div>
-    <div class="block">
-        <h3>金额详情</h3>
-        <button onclick="App.getIssuedAmount()">已发行金额总数</button>
-    </div>
-
-    <div class="block">
-        <h3>注销</h3>
-        <button id="logout" onclick="App.logout(currentAccount)">注销</button>
-    </div>
-
-
-    <br/>
-    <h2>测试信息</h2>
-    <div>
-        <button onclick="App.allAccounts()">Account(console)</button>
-        <br><br>
-    </div>
-    <div>
-        <p>Console</p>
-        <div id="console">
+    <div style= "margin-top:50px"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active btn-outline-secondary" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+             查询信息
+            </a>
+            <a class="nav-link btn-outline-secondary" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+             发行金额
+            </a>
+            <a class="nav-link btn-outline-secondary" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" onClick="App.logout(currentAccount)" role="tab" aria-controls="v-pills-settings" aria-selected="false">注销账户</a>
+          </div>
         </div>
+        <div class="col-9">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+              <div class="card card-body">
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-secondary" onclick="App.getIssuedAmount()">已发行金额总数</button>
+                  </div>
+                  <div class="col">
+                    <label id="amountLabel" for=""></label>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+              <form class="" action="index.html" method="post">
+                <div class="form-group">
+                  <label for="studentAddress">学生账户</label>
+                  <input class="form-control" type="text" id="studentAddress" placeholder="target username">
+                </div>
+                <div class="form-group">
+                  <label for="amount">金额数量</label>
+                  <input class="form-control" type="text" id="amount" placeholder="aomunt">
+                </div>
+                <button class='btn btn-secondary' onclick="App.sendMoneyToStudent()">发行金额</button>
+
+              </form>
+
+
+
+
+
+
+
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+              <form>
+                  <label style="margin-top:20px" for="goodId">购买食物Id</label>
+                  <input style="margin-top:20px" type="text" class="form-control" id="goodId">
+                  <button style="margin-top:10px" class="btn btn-secondary" id="buyFood" onclick="App.buyFood(currentAccount)">购买食物</button>
+              </form>
+
+
+
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-</div>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

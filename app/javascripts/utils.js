@@ -1,5 +1,4 @@
 
-// 十六进制转化为字符串
 module.exports = {
   hexCharCodeToStr: function (hexCharCodeStr) {
     const trimedStr = hexCharCodeStr.trim()
@@ -12,7 +11,7 @@ module.exports = {
     let curCharCode
     const resultStr = []
     for (let i = 0; i < len; i = i + 2) {
-      curCharCode = parseInt(rawStr.substr(i, 2), 16) // ASCII Code Value
+      curCharCode = parseInt(rawStr.substr(i, 2), 16)
       resultStr.push(String.fromCharCode(curCharCode))
     }
     return resultStr.join('')

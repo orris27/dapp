@@ -2,6 +2,7 @@ const utils = require('./utils')
 var sha256 = require('js-sha256');
 
 module.exports = {
+  status : 0,
 
   newCook: function (DinningInstance, account) {
     const address1 = document.getElementById('cookAddress').value
@@ -13,6 +14,7 @@ module.exports = {
           console.log(event.args.message)
           window.App.setStatus(event.args.message)
           sessionStorage.setItem('cook_account', address)
+          sessionStorage.setItem('username', address1)
           window.location.href = "cook.html"
         }
       })
@@ -26,10 +28,8 @@ module.exports = {
     const password = document.getElementById('cookLoginPwd').value
     DinningInstance.getCookPassword(address, { from: account }).then(function (result) {
       if (result[0]) {
-        // 查询密码成功
         if (password.localeCompare(utils.hexCharCodeToStr(result[1])) === 0) {
           console.log('登录成功')
-          // 跳转到商户界面
           sessionStorage.setItem("cook_account", address)
           sessionStorage.setItem("username", address1)
           window.location.href = 'cook.html'
@@ -38,13 +38,11 @@ module.exports = {
           window.App.setStatus('密码错误，登录失败')
         }
       } else {
-        // 查询密码失败
         console.log('该商户不存在，请确定账号后再登录！')
         window.App.setStatus('该商户不存在，请确定账号后再登录！')
       }
     })
   },
-  // 根据商户address获取积分余额
   getScoreWithCookAddr: function (currentAccount, DinningInstance, account) {
     console.log(currentAccount)
     DinningInstance.getScoreWithCookAddr.call(currentAccount, { from: account }).then(function (value) {
@@ -57,7 +55,6 @@ module.exports = {
   getCurrentCook: function (currentAccount) {
     window.App.setStatus(currentAccount)
   },
-  // 商户实现任意的积分转让
   transferScoreToAnotherFromCook: function (currentAccount, DinningInstance, account) {
     const receivedAddr = document.getElementById('anotherAccountAddr').value
     const amount = parseInt(document.getElementById('scoreAmount').value)
@@ -69,7 +66,6 @@ module.exports = {
       }
     })
   },
-  // 商户增加一件商品：默认gas会OOG
   addFood: function (currentAccount, DinningInstance, account) {
     const goodId = document.getElementById('goodId').value
     const goodPrice = parseInt(document.getElementById('goodPrice').value)
@@ -82,7 +78,6 @@ module.exports = {
       })
     })
   },
-  // 商户查看已添加的所有商品
   getFoodsByCook: function (currentAccount, DinningInstance, account) {
     DinningInstance.getFoodsByCook.call(currentAccount, { from: account }).then(function (result) {
       console.log(result.length)
@@ -98,7 +93,6 @@ module.exports = {
       window.App.setStatus(allFoods)
     })
   },
-  // 商户和银行进行积分清算
   settleScoreWithBank: function (currentAccount, DinningInstance, account) {
     const settleAmount = parseInt(document.getElementById('settleAmount').value)
     DinningInstance.settleScoreWithBank(currentAccount, settleAmount, { from: account }).then(function () {
